@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block title %}Samarthan · Aggregate monitoring{% endblock %}{% block content %}
+<section class="console-head"><div><div class="eyebrow">TIER 2 · ADMINISTRATION</div><h1>Aggregate welfare monitoring</h1><p>Operational visibility without exposing names, case IDs, narratives or individual distress histories.</p></div><div class="console-time">PRIVACY GATE<br><b>&lt;5 SUPPRESSED</b></div></section>
+<div class="metric-row">
+  <div class="metric-card"><span>Monitored cases</span><b>{{summary.cases}}</b><small>Aggregate only</small></div>
+  <div class="metric-card"><span>Check-ins</span><b>{{summary.checkins}}</b><small>Longitudinal interactions</small></div>
+  <div class="metric-card"><span>Interventions</span><b>{{summary.interventions}}</b><small>Closed-loop support records</small></div>
+  <div class="metric-card"><span>Completed</span><b>{{summary.completed}}</b><small>Recorded outcomes</small></div>
+</div>
+<section class="queue-table-card aggregate-card">
+  <div class="queue-table-head"><div><b>Geographic aggregate</b><span>District cells below 5 are intentionally masked.</span></div><span class="demo-badge">NO INDIVIDUAL PII</span></div>
+  {% for r in geo %}
+  <div class="queue-line"><div class="q-case"><b>{{r.state}}</b><small>{{r.district}}</small></div><div class="q-score"><b>{{r.cases}}</b><small>cases</small></div><div class="q-recommend"><span>{{r.priority}}</span><small>high / critical latest signals</small></div></div>
+  {% endfor %}
+</section>
+<div class="human-banner"><div><span>DATA BOUNDARY</span><b>Administration ≠ counsellor view</b></div><p>This prototype demonstrates aggregate-only monitoring. Production deployment requires server-side authentication, authorisation and institutional data-governance controls.</p></div>
+{% endblock %}
